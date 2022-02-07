@@ -684,7 +684,7 @@
                 "html": "",
                 "widgetType": "fader",
                 "quantity": "JS{\n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters);\n  } else {\n    params = fixture.parameters;\n  }\n\n  return params?.filter(p => p.type == 'scalar')?.length ?? 0;\n}",
-                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const plot = @{xy_pantilt.value};\n  \n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  let value = 0;\n  if (param.name == 'red') {\n    value = picker[0];\n  } else if (param.name == 'green') {\n    value = picker[1];\n  } else if (param.name == 'blue') {\n    value = picker[2];\n  } else if (param.name == 'pan') {\n    value = plot[0];\n  } else if (param.name == 'tilt') {\n    value = plot[1];\n  }\n  \n  return {\n    design: \"compact\",\n    snap: true,\n    address: \"/dashboard/setLight\",\n    preArgs: [ `${fixture.name}.${param.name}` ],\n    typeTags: \"s\",\n    range: { \"min\": 0, \"max\": param.valueIsPercentage ? 100 : 255 },\n    id: `fader_${fixture.name}_${param.name}`,\n    value,\n    linkId: `fader_${fixture.name}_${param.name}`,\n  };\n}"
+                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const plot = @{xy_pantilt.value};\n  \n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  return {\n    design: \"compact\",\n    snap: true,\n    address: \"/dashboard/setLight\",\n    preArgs: [ `${fixture.name}.${param.name}` ],\n    typeTags: \"s\",\n    range: { \"min\": 0, \"max\": param.valueIsPercentage ? 100 : 255 },\n    id: `fader_${fixture.name}_${param.name}`,\n    linkId: `fader_${fixture.name}_${param.name}`,\n  };\n}"
               },
               {
                 "type": "matrix",
@@ -776,7 +776,7 @@
                 "ignoreDefaults": false,
                 "bypass": true,
                 "onCreate": "",
-                "onValue": "if (value !== 1) return;\nconst fixture = @{var_fixture};\n\nif (get('var_rgb_prop') !== '') {\n  for (const x of ['red', 'green', 'blue']) {\n    const val = get(`fader_${fixture.name}_${x}`);\n    set(`var_rgbpicker_${x}`, val);\n  }\n}\n  \nif (get('var_pt_prop') !== '') {\n  for (const x of ['pan', 'tilt']) {\n    const val = get(`fader_${fixture.name}_${x}`);\n    set(`var_xy_${x}`, val);\n  }\n}\n\nconsole.log(get('var_xy_pan'))",
+                "onValue": "const fixture = get('var_fixture');\n\nif (value === 1) {\n  if (get('var_rgb_prop') !== '') {\n    let rgbValues = [];\n    \n    for (const x of ['red', 'green', 'blue']) {\n      const val = get(`fader_${fixture.name}_${x}`);\n      rgbValues.push(val);\n    }\n    \n    set('rgb_picker', rgbValues);\n  }\n    \n  if (get('var_pt_prop') !== '') {\n    let ptValues = [];\n    \n    for (const x of ['pan', 'tilt']) {\n      const val = get(`fader_${fixture.name}_${x}`);\n      ptValues.push(val);\n    }\n    \n    set('xy_pantilt', ptValues);\n  }\n} else {\n  if (get('var_rgb_prop') !== '') {\n    let rgbValues = [];\n    \n    const [red, green, blue] = get('rgb_picker');\n    set(`fader_${fixture.name}_red`, red);\n    set(`fader_${fixture.name}_green`, green);\n    set(`fader_${fixture.name}_blue`, blue);\n  }\n    \n  if (get('var_pt_prop') !== '') {\n    let ptValues = [];\n    \n    const [pan, tilt] = get('xy_pantilt');\n    set(`fader_${fixture.name}_pan`, pan);\n    set(`fader_${fixture.name}_tilt`, tilt);\n  }\n}",
                 "widgets": [
                   {
                     "type": "variable",
@@ -924,11 +924,7 @@
                           "min": 0,
                           "max": 1
                         },
-                        "value": [
-                          "@{var_rgbpicker_red}",
-                          "@{var_rgbpicker_green}",
-                          "@{var_rgbpicker_blue}"
-                        ],
+                        "value": "",
                         "default": "",
                         "linkId": "",
                         "address": "/dashboard/setLight",
@@ -944,57 +940,6 @@
                         "onCreate": "",
                         "onValue": "",
                         "onTouch": ""
-                      },
-                      {
-                        "type": "variable",
-                        "id": "var_rgbpicker_red",
-                        "comments": "",
-                        "value": "",
-                        "default": "",
-                        "linkId": "",
-                        "address": "auto",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 2,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "onCreate": "",
-                        "onValue": ""
-                      },
-                      {
-                        "type": "variable",
-                        "id": "var_rgbpicker_green",
-                        "comments": "",
-                        "value": "",
-                        "default": "",
-                        "linkId": "",
-                        "address": "auto",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 2,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "onCreate": "",
-                        "onValue": ""
-                      },
-                      {
-                        "type": "variable",
-                        "id": "var_rgbpicker_blue",
-                        "comments": "",
-                        "value": "",
-                        "default": "",
-                        "linkId": "",
-                        "address": "auto",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 2,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "onCreate": "",
-                        "onValue": ""
                       }
                     ],
                     "tabs": []
