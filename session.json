@@ -558,7 +558,7 @@
                 "left": 0,
                 "visible": true,
                 "interaction": true,
-                "width": "50%",
+                "width": "60%",
                 "height": "10%",
                 "expand": "false",
                 "colorText": "auto",
@@ -826,13 +826,13 @@
               {
                 "type": "modal",
                 "top": 0,
-                "left": "50%",
+                "left": 0,
                 "id": "modal_interfaces",
                 "visible": true,
                 "interaction": true,
                 "comments": "",
-                "width": "10%",
-                "height": "10%",
+                "width": 0,
+                "height": 0,
                 "expand": false,
                 "colorText": "auto",
                 "colorWidget": "auto",
@@ -843,7 +843,7 @@
                 "alphaFillOn": "auto",
                 "lineWidth": "auto",
                 "padding": "auto",
-                "css": "",
+                "css": ".toggle, label {\n  display: none;\n}",
                 "colorBg": "auto",
                 "layout": "grid",
                 "justify": "start",
@@ -1267,7 +1267,7 @@
                     "type": "panel",
                     "top": 0,
                     "left": 0,
-                    "id": "panel_1",
+                    "id": "panel_presets",
                     "visible": true,
                     "interaction": true,
                     "comments": "",
@@ -1432,9 +1432,9 @@
                 "doubleTap": false,
                 "values": {
                   "Menu": "",
-                  "Undo": "/dashboard/revert",
                   "Clear": "/dashboard/clear",
-                  "New Cue with All": "/dashboard/newCueWithAll"
+                  "New Cue with All": "/dashboard/newCueWithAll",
+                  "Interfaces": "interfaces"
                 },
                 "weights": "",
                 "value": "",
@@ -1448,7 +1448,7 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": "console.log(value);\nsend(value)\nset('this', '')"
+                "onValue": "if (value === '') return;\n\nset('this', '');\n\nif (value == 'interfaces') {\n  set('modal_interfaces', 1);\n  return;\n}\n\nif (value == '/dashboard/clear') {\n  const fixture = get('var_fixture');\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters);\n  } else {\n    params = fixture.parameters;\n  }\n\n  params = params.filter(p => p.type == 'scalar');\n  \n  for (const p of params) {\n    console.log(p);\n    set(`fader_${fixture.name}_${p.name}`, 0);\n  }\n}\n\nsend(value);\nset('this', '');"
               }
             ],
             "tabs": []
