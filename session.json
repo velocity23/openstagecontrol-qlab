@@ -1254,7 +1254,7 @@
                 "ignoreDefaults": false,
                 "bypass": true,
                 "onCreate": "",
-                "onValue": "const fixture = get('var_fixture');\n\nif (value === 1) {\n  if (get('var_rgb_prop') !== '') {\n    let rgbValues = [];\n    \n    for (const x of ['red', 'green', 'blue']) {\n      const val = get(`fader_${fixture.name}_${x}`);\n      rgbValues.push(val);\n    }\n    \n    set('rgb_picker', rgbValues);\n  }\n    \n  if (get('var_pt_prop') !== '') {\n    let ptValues = [];\n    \n    for (const x of ['pan', 'tilt']) {\n      const val = get(`fader_${fixture.name}_${x}`);\n      ptValues.push(val);\n    }\n    \n    set('xy_pantilt', ptValues);\n  }\n} else {\n  if (get('var_rgb_prop') !== '') {\n    let rgbValues = [];\n    \n    const [red, green, blue] = get('rgb_picker');\n    set(`fader_${fixture.name}_red`, red);\n    set(`fader_${fixture.name}_green`, green);\n    set(`fader_${fixture.name}_blue`, blue);\n  }\n    \n  if (get('var_pt_prop') !== '') {\n    let ptValues = [];\n    \n    const [pan, tilt] = get('xy_pantilt');\n    set(`fader_${fixture.name}_pan`, pan);\n    set(`fader_${fixture.name}_tilt`, tilt);\n  }\n}",
+                "onValue": "",
                 "colorBg": "auto",
                 "justify": "start",
                 "contain": true,
