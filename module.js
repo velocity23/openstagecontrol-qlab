@@ -33,10 +33,20 @@ module.exports = {
                 data.address = data.address.replace(/^\/reply/, '');
             }
 
+            const reply = JSON.parse(data.args[0].value);
+            if (reply.workspace_id) {
+                receive(
+                    '127.0.0.1',
+                    59000,
+                    '/workspace_id',
+                    reply.workspace_id
+                );
+            }
+
             data.args = [
                 {
                     type: 's',
-                    value: JSON.parse(data.args[0].value).data,
+                    value: reply.data,
                 },
             ];
         }
