@@ -1,6 +1,6 @@
 {
   "createdWith": "Open Stage Control",
-  "version": "1.14.6",
+  "version": "1.15.5",
   "type": "session",
   "content": {
     "type": "root",
@@ -55,7 +55,8 @@
         "ignoreDefaults": false,
         "bypass": false,
         "onCreate": "",
-        "onValue": ""
+        "onValue": "",
+        "lock": false
       },
       {
         "type": "panel",
@@ -180,7 +181,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "button",
@@ -223,7 +225,8 @@
                 "doubleTap": false,
                 "typeTags": "",
                 "ignoreDefaults": false,
-                "bypass": false
+                "bypass": false,
+                "lock": false
               },
               {
                 "type": "text",
@@ -233,7 +236,7 @@
                 "visible": true,
                 "comments": "",
                 "width": "80%",
-                "height": "10%",
+                "height": "5%",
                 "expand": "false",
                 "colorText": "auto",
                 "colorWidget": "auto",
@@ -257,17 +260,18 @@
                 "decimals": 2,
                 "target": "",
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "text",
-                "top": "10%",
+                "top": "5%",
                 "left": "20%",
                 "id": "text_notes",
                 "visible": true,
                 "comments": "",
                 "width": "80%",
-                "height": "5%",
+                "height": "10%",
                 "expand": false,
                 "colorText": "auto",
                 "colorWidget": "auto",
@@ -281,7 +285,7 @@
                 "html": "",
                 "css": "font-size: 15px",
                 "vertical": false,
-                "wrap": false,
+                "wrap": true,
                 "value": "",
                 "default": "",
                 "linkId": "",
@@ -291,7 +295,8 @@
                 "target": "",
                 "onCreate": "",
                 "onValue": "",
-                "align": "center"
+                "align": "center",
+                "lock": false
               },
               {
                 "type": "button",
@@ -334,7 +339,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "button",
@@ -377,7 +383,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "button",
@@ -420,7 +427,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "button",
@@ -463,10 +471,12 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               }
             ],
-            "tabs": []
+            "tabs": [],
+            "lock": false
           },
           {
             "type": "tab",
@@ -519,7 +529,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "variable",
@@ -536,7 +547,8 @@
                 "onValue": "",
                 "typeTags": "",
                 "ignoreDefaults": false,
-                "bypass": false
+                "bypass": false,
+                "lock": false
               },
               {
                 "type": "variable",
@@ -553,7 +565,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "variable",
@@ -570,7 +583,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "variable",
@@ -587,7 +601,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "variable",
@@ -604,7 +619,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "menu",
@@ -652,7 +668,8 @@
                 "menuAlignH": "center",
                 "toggle": true,
                 "doubleTap": false,
-                "weights": ""
+                "weights": "",
+                "lock": false
               },
               {
                 "type": "matrix",
@@ -701,7 +718,8 @@
                 "onCreate": "",
                 "onValue": "",
                 "widgets": [],
-                "tabs": []
+                "tabs": [],
+                "lock": false
               },
               {
                 "type": "matrix",
@@ -744,13 +762,14 @@
                 "traversing": false,
                 "widgetType": "fader",
                 "quantity": "JS{\n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters);\n  } else {\n    params = fixture.parameters;\n  }\n\n  return params?.filter(p => p.type == 'scalar')?.length ?? 0;\n}",
-                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const plot = @{xy_pantilt.value};\n  \n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  return {\n    design: \"compact\",\n    snap: true,\n    address: \"/dashboard/setLight\",\n    preArgs: [ `${fixture.name}.${param.name}` ],\n    typeTags: \"s\",\n    range: { \"min\": 0, \"max\": param.valueIsPercentage ? 100 : 255 },\n    id: `fader_${fixture.name}_${param.name}`,\n    linkId: `fader_${fixture.name}_${param.name}`,\n  };\n}",
+                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const plot = @{xy_pantilt.value};\n  \n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  return {\n    design: \"compact\",\n    snap: true,\n    address: \"/dashboard/setLight\",\n    preArgs: [ `${fixture.name}.${param.name}` ],\n    typeTags: \"s\",\n    range: { \"min\": 0, \"max\": param.valueIsPercentage ? 100 : 255 },\n    id: `fader_${fixture.name}_${param.name}`,\n    linkId: `fader_${fixture.name}_${param.name}`,\n    decimals: 0,\n  };\n}",
                 "typeTags": "",
                 "decimals": 2,
                 "ignoreDefaults": false,
                 "bypass": false,
                 "widgets": [],
-                "tabs": []
+                "tabs": [],
+                "lock": false
               },
               {
                 "type": "matrix",
@@ -793,13 +812,14 @@
                 "traversing": false,
                 "widgetType": "input",
                 "quantity": "JS{\n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters);\n  } else {\n    params = fixture.parameters;\n  }\n\n  return params?.filter(p => p.type == 'scalar')?.length ?? 0;\n}",
-                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  let colorFill = 'rgb(0,0,0)';\n  if (param.name == 'red') {\n    colorFill = 'rgb(#_{@_{this} / 100 * 255},0,0)';\n  } else if (param.name == 'green') {\n    colorFill = 'rgb(0,#_{@_{this} / 100 * 255},0)';\n  } else if (param.name == 'blue') {\n    colorFill = 'rgb(0, 0, #_{@_{this} / 100 * 255})';\n  } else if (param.name == 'intensity') {\n    let incr = '#_{@_{this} / 100 * 255}';\n    colorFill = `rgb(${incr},${incr},${incr})`;\n  }\n  \n  return {\n    linkId: `fader_${fixture.name}_${param.name}`,\n    'default': 0,\n    asYouType: true,\n    numeric: true,\n    unit: param.valueIsPercentage ? '%' : '',\n    colorFill,\n    css: ':focus { color: white; caret-color: white; }'\n  };\n}",
+                "props": "JS{\n  const picker = @{rgb_picker.value};\n  const fixture = @{var_fixture};\n  let params = null;\n  if (typeof fixture.definition !== 'undefined') {\n    params = window.Object.values(fixture.definition.parameters).filter(p => p.type == 'scalar');\n  } else {\n    params = fixture.parameters.filter(p => p.type == 'scalar');\n  }\n  \n  const param = params[$];\n  \n  let colorFill = 'rgb(0,0,0)';\n  if (param.name == 'red') {\n    colorFill = 'rgb(#_{@_{this} / 100 * 255},0,0)';\n  } else if (param.name == 'green') {\n    colorFill = 'rgb(0,#_{@_{this} / 100 * 255},0)';\n  } else if (param.name == 'blue') {\n    colorFill = 'rgb(0, 0, #_{@_{this} / 100 * 255})';\n  } else if (param.name == 'intensity') {\n    let incr = '#_{@_{this} / 100 * 255}';\n    colorFill = `rgb(${incr},${incr},${incr})`;\n  }\n  \n  return {\n    linkId: `fader_${fixture.name}_${param.name}`,\n    'default': 0,\n    asYouType: true,\n    numeric: true,\n    unit: param.valueIsPercentage ? '%' : '',\n    colorFill,\n    css: ':focus { color: white; caret-color: white; }',\n    decimals: 0,\n  };\n}",
                 "typeTags": "",
                 "decimals": 2,
                 "ignoreDefaults": false,
                 "bypass": false,
                 "widgets": [],
-                "tabs": []
+                "tabs": [],
+                "lock": false
               },
               {
                 "type": "led",
@@ -844,7 +864,8 @@
                   "min": 0,
                   "max": 1
                 },
-                "logScale": false
+                "logScale": false,
+                "lock": false
               },
               {
                 "type": "button",
@@ -887,7 +908,8 @@
                 "wrap": false,
                 "on": null,
                 "off": null,
-                "mode": "momentary"
+                "mode": "momentary",
+                "lock": false
               },
               {
                 "type": "menu",
@@ -935,7 +957,8 @@
                 "menuAlignH": "center",
                 "toggle": true,
                 "values": "{\n  \"Menu\": \"menu\",\n  \"Clear\": \"/dashboard/clear\",\n  \"New Cue with All\": \"/dashboard/newCueWithAll\",\n  #{ @{var_mode} === 'create_preset' ? '\"Cancel Preset\": \"cancel_preset\",' : '\"Create Preset\": \"create_preset\",' }\n  \"Interfaces\": \"interfaces\"\n}",
-                "weights": ""
+                "weights": "",
+                "lock": false
               },
               {
                 "type": "modal",
@@ -998,7 +1021,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": ""
+                    "onValue": "",
+                    "lock": false
                   },
                   {
                     "type": "variable",
@@ -1015,7 +1039,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": ""
+                    "onValue": "",
+                    "lock": false
                   },
                   {
                     "type": "panel",
@@ -1094,7 +1119,8 @@
                         "decimals": 2,
                         "target": "",
                         "onCreate": "",
-                        "onValue": ""
+                        "onValue": "",
+                        "lock": false
                       },
                       {
                         "type": "rgb",
@@ -1144,10 +1170,12 @@
                         "bypass": false,
                         "onCreate": "",
                         "onValue": "",
-                        "onTouch": ""
+                        "onTouch": "",
+                        "lock": false
                       }
                     ],
-                    "tabs": []
+                    "tabs": [],
+                    "lock": false
                   },
                   {
                     "type": "panel",
@@ -1225,7 +1253,8 @@
                         "decimals": 2,
                         "target": "",
                         "onCreate": "",
-                        "onValue": ""
+                        "onValue": "",
+                        "lock": false
                       },
                       {
                         "type": "xy",
@@ -1281,7 +1310,8 @@
                         "bypass": false,
                         "onCreate": "",
                         "onValue": "",
-                        "onTouch": ""
+                        "onTouch": "",
+                        "lock": false
                       },
                       {
                         "type": "variable",
@@ -1298,7 +1328,8 @@
                         "ignoreDefaults": false,
                         "bypass": false,
                         "onCreate": "",
-                        "onValue": ""
+                        "onValue": "",
+                        "lock": false
                       },
                       {
                         "type": "variable",
@@ -1315,11 +1346,13 @@
                         "ignoreDefaults": false,
                         "bypass": false,
                         "onCreate": "",
-                        "onValue": ""
+                        "onValue": "",
+                        "lock": false
                       }
                     ],
                     "tabs": [],
-                    "verticalTabs": false
+                    "verticalTabs": false,
+                    "lock": false
                   }
                 ],
                 "tabs": [],
@@ -1329,7 +1362,8 @@
                 "popupTop": "auto",
                 "relative": false,
                 "popupLabel": "Interfaces",
-                "popupPadding": "auto"
+                "popupPadding": "auto",
+                "lock": false
               },
               {
                 "type": "modal",
@@ -1392,7 +1426,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": ""
+                    "onValue": "",
+                    "lock": false
                   },
                   {
                     "type": "variable",
@@ -1409,7 +1444,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": "const workspaceId = get('workspace_id');\nstorage.setItem(`${workspaceId}/presets`, value);"
+                    "onValue": "const workspaceId = get('workspace_id');\nstorage.setItem(`${workspaceId}/presets`, value);",
+                    "lock": false
                   },
                   {
                     "type": "variable",
@@ -1426,7 +1462,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": "const key = get('var_preset_param');\nconst currentVal = get('var_presets');\nset('var_presets', {\n  ...currentVal,\n  [key]: value,\n});"
+                    "onValue": "const key = get('var_preset_param');\nconst currentVal = get('var_presets');\nset('var_presets', {\n  ...currentVal,\n  [key]: value,\n});",
+                    "lock": false
                   },
                   {
                     "type": "variable",
@@ -1443,7 +1480,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": ""
+                    "onValue": "",
+                    "lock": false
                   },
                   {
                     "type": "matrix",
@@ -1478,7 +1516,7 @@
                     "traversing": false,
                     "widgetType": "button",
                     "quantity": "@{var_patch_params.value.length}",
-                    "props": "JS{\n  const param = @{var_patch_params}[$];\n  const name = param?.name ?? '';\n  \n  return {\n    css: 'font-size: 15px; word-break: break-all;',\n    label: name,\n    value: name == @{var_preset_param} ? 1 : 0,\n    onValue: `if (value === 1){set('var_preset_param', '${param?.name ?? 'other'}')}`,\n    interaction: name != @{var_preset_param}\n  };\n}\n  ",
+                    "props": "JS{\n  const param = @{var_patch_params}[$];\n  const name = param?.name ?? '';\n  \n  return {\n    css: 'font-size: 15px; word-break: break-all;',\n    label: name,\n    value: name == @{var_preset_param} ? 1 : 0,\n    onValue: `if (value === 1){set('var_preset_param', '${param?.name ?? 'other'}')}`,\n    interaction: name != @{var_preset_param},\n    wrap: true,\n  };\n}\n  ",
                     "value": "",
                     "default": "",
                     "linkId": "",
@@ -1492,7 +1530,8 @@
                     "onCreate": "",
                     "onValue": "",
                     "widgets": [],
-                    "tabs": []
+                    "tabs": [],
+                    "lock": false
                   },
                   {
                     "type": "matrix",
@@ -1541,7 +1580,8 @@
                     "onCreate": "",
                     "onValue": "",
                     "widgets": [],
-                    "tabs": []
+                    "tabs": [],
+                    "lock": false
                   },
                   {
                     "type": "button",
@@ -1584,7 +1624,8 @@
                     "ignoreDefaults": false,
                     "bypass": true,
                     "onCreate": "",
-                    "onValue": "if (value === 1) {\n  set('var_mode', 'edit_preset');\n} else {\n  set('var_mode', 'normal');\n  set('var_preset_editing', '');\n}"
+                    "onValue": "if (value === 1) {\n  set('var_mode', 'edit_preset');\n} else {\n  set('var_mode', 'normal');\n  set('var_preset_editing', '');\n}",
+                    "lock": false
                   },
                   {
                     "type": "input",
@@ -1624,7 +1665,8 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": "const [param, index] = get('var_preset_editing').split('.');\nlet presets = get('var_presets');\npresets[param][index].name = value;\n\nset('var_presets', presets);"
+                    "onValue": "const [param, index] = get('var_preset_editing').split('.');\nlet presets = get('var_presets');\npresets[param][index].name = value;\n\nset('var_presets', presets);",
+                    "lock": false
                   },
                   {
                     "type": "button",
@@ -1667,20 +1709,23 @@
                     "ignoreDefaults": false,
                     "bypass": false,
                     "onCreate": "",
-                    "onValue": "const [param, index] = get('var_preset_editing').split('.');\nlet presets = get('var_presets');\npresets[param][index] = {name: '', values: {}};\n\nset('var_presets', presets);\nset('var_preset_editing', '');"
+                    "onValue": "const [param, index] = get('var_preset_editing').split('.');\nlet presets = get('var_presets');\npresets[param][index] = {name: '', values: {}};\n\nset('var_presets', presets);\nset('var_preset_editing', '');",
+                    "lock": false
                   }
                 ],
                 "tabs": [],
-                "popupWidth": "90%",
-                "popupHeight": "90%",
+                "popupWidth": "100%",
+                "popupHeight": "95%",
                 "popupLeft": "auto",
                 "popupTop": "auto",
                 "relative": false,
                 "popupLabel": "Presets",
-                "popupPadding": "auto"
+                "popupPadding": "auto",
+                "lock": false
               }
             ],
-            "tabs": []
+            "tabs": [],
+            "lock": false
           },
           {
             "type": "tab",
@@ -1759,7 +1804,8 @@
                 "ignoreDefaults": false,
                 "bypass": true,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "input",
@@ -1799,7 +1845,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "input",
@@ -1839,7 +1886,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "input",
@@ -1879,7 +1927,8 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               },
               {
                 "type": "input",
@@ -1919,14 +1968,18 @@
                 "ignoreDefaults": false,
                 "bypass": false,
                 "onCreate": "",
-                "onValue": ""
+                "onValue": "",
+                "lock": false
               }
             ],
-            "tabs": []
+            "tabs": [],
+            "lock": false
           }
-        ]
+        ],
+        "lock": false
       }
     ],
-    "tabs": []
+    "tabs": [],
+    "lock": false
   }
 }
