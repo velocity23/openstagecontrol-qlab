@@ -1,6 +1,6 @@
 {
   "createdWith": "Open Stage Control",
-  "version": "1.15.5",
+  "version": "1.15.6",
   "type": "session",
   "content": {
     "type": "root",
@@ -142,7 +142,7 @@
             "widgets": [
               {
                 "type": "button",
-                "top": "15%",
+                "top": "20%",
                 "left": "20%",
                 "id": "button_prev",
                 "visible": true,
@@ -192,7 +192,7 @@
                 "visible": true,
                 "comments": "",
                 "width": "20%",
-                "height": "15%",
+                "height": "20%",
                 "expand": "false",
                 "colorText": "auto",
                 "colorWidget": "auto",
@@ -236,7 +236,7 @@
                 "visible": true,
                 "comments": "",
                 "width": "80%",
-                "height": "5%",
+                "height": "10%",
                 "expand": "false",
                 "colorText": "auto",
                 "colorWidget": "auto",
@@ -265,7 +265,7 @@
               },
               {
                 "type": "text",
-                "top": "5%",
+                "top": "10%",
                 "left": "20%",
                 "id": "text_notes",
                 "visible": true,
@@ -300,7 +300,7 @@
               },
               {
                 "type": "button",
-                "top": "15%",
+                "top": "20%",
                 "left": "60%",
                 "id": "button_lxup",
                 "visible": true,
@@ -344,7 +344,7 @@
               },
               {
                 "type": "button",
-                "top": "15%",
+                "top": "20%",
                 "left": "80%",
                 "id": "button_blackout",
                 "visible": true,
@@ -388,7 +388,7 @@
               },
               {
                 "type": "button",
-                "top": "15%",
+                "top": "20%",
                 "left": "0%",
                 "id": "button_panic",
                 "visible": true,
@@ -432,7 +432,7 @@
               },
               {
                 "type": "button",
-                "top": "15%",
+                "top": "20%",
                 "left": "40%",
                 "id": "button_next",
                 "visible": true,
