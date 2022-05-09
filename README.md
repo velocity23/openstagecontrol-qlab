@@ -12,3 +12,9 @@ An [Open Stage Control](https://github.com/jean-emmanuel/open-stage-control) ses
 ## Installation
 
 Simply clone this repository, download and install the latest version of [Open Stage Control](https://github.com/jean-emmanuel/open-stage-control/releases/latest), then open the server.config file.
+
+## Screenshots
+
+![](images/ss1.png)
+
+![](images/ss2.png)
